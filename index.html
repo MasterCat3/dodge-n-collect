@@ -531,15 +531,15 @@
             //Handling Touch Events(experimental)
             canvas.addEventListener("touchstart", function(event) {
                 if (scene === "play") {
-                    player.x = event.changedTouches[0].clientX + 20;
-                    player.y = event.changedTouches[0].clientY + 20;
+                    player.x = event.changedTouches[0].clientX - 40;
+                    player.y = event.changedTouches[0].clientY - 40;
                     event.preventDefault();
                 };
             });
             canvas.addEventListener("touchmove", function(event) {
                 if (scene === "play") {
-                    player.x = event.changedTouches[0].clientX + 20;
-                    player.y = event.changedTouches[0].clientY + 20;
+                    player.x = event.changedTouches[0].clientX - 40;
+                    player.y = event.changedTouches[0].clientY - 40;
                     event.preventDefault();
                 };
             });

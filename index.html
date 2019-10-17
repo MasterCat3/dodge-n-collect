@@ -506,7 +506,6 @@
                 },
             };
             
-            var onReset 
             // Code to be run 60 times per seconds(Or as many FPS as the device allows)
             var draw = function() {
                 scenes[scene]();
@@ -540,7 +539,7 @@
             canvas.addEventListener("touchmove", function(event) {
                 if (scene === "play") {
                     player.x = event.changedTouches[0].clientX - 20;
-                    player.y = event.changedTouches[0].clientY - 20s;
+                    player.y = event.changedTouches[0].clientY - 20;
                     event.preventDefault();
                 };
             });

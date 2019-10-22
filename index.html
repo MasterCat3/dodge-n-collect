@@ -640,6 +640,14 @@
             
             // Resizing appropriately for resizing windows
             window.addEventListener("resize", function(event) {
+                if(level === 0) {
+                    initialNumberOfBlocks = Math.round(canvas.width/100 / 2);
+                    numberOfBlocks = initialNumberOfBlocks;
+                    redBlocks = [];
+                    for(var i = 0; i < numberOfBlocks; i++) {
+                        redBlocks.push(new Vector(width/2, height/2, rangedRandom(-5, 5), rangedRandom(-5, 5)));
+                    };
+                };
                 canvas.width = window.innerWidth * 0.98;;
                 canvas.height = window.innerHeight * 0.98;
                 width = canvas.width;

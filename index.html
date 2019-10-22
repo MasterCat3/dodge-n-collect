@@ -185,7 +185,8 @@
             var mouseIsDown = false;
 
             
-            // A few buttons
+            
+            
             var playButton = new Button(width/2, height/2 - 110, "  Play  ", "blue", "orange");
             //var levelsButton = new Button(width/2, height/2 - 10, "  Levels  ", "blue", "orange");
             var howButton = new Button(width/2, height/2 -10, "   How  ", "blue", "orange");
@@ -303,9 +304,9 @@
             
             var coin = new Coin(rangedRandom(20, width - 20), rangedRandom(40, height - 20), 10);
             var moveCoin = function() {
-                coin.x = rangedRandom(20, width - 20);
-                coin.y = rangedRandom(20, height - 20);
                 score += 1;
+                coin.x = rangedRandom(20, width - 20);
+                coin.y = rangedRandom(40, height - 20);
             }
             
             // Scenes
@@ -391,17 +392,14 @@
                         // Handling player and coin collisions
                         var distX = Math.abs(coin.x - player.x-(40/2-40));
                         var distY = Math.abs(coin.y - player.y-40/2);
-
+                        var dx=distX-40/2;
+                        var dy=distY-(40/2);
+                        
                         if (distX > (40/2 + coin.r)) {}
                         if (distY > ((40/2-40) + coin.r)) {}
 
-                        if (distX <= (40/2) && distY <= (40/2)) { moveCoin();} 
+                        if (distX <= (40/2) && distY <= (40/2) || dx*dx+dy*dy<=(coin.r*coin.r)) { moveCoin();} 
 
-                        var dx=distX-40/2;
-                        var dy=distY-(40/2);
-                        if(dx*dx+dy*dy<=(coin.r*coin.r)) {
-                            moveCoin();
-                        }
                         ctx.restore();
                     };
                     
@@ -639,6 +637,23 @@
             document.addEventListener("keyup", function(event) {
                 keysPressed[event.keyCode] = false;
             });
+            
+            // Resizing appropriately for resizing windows
+            window.addEventListener("resize", function(event) {
+                canvas.width = window.innerWidth * 0.98;;
+                canvas.height = window.innerHeight * 0.98;
+                width = canvas.width;
+                height = canvas.height;
+                playButton.x = width/2; playButton.y = height/2 - 110;
+                howButton.x = width/2; howButton.y = height/2 - 10;
+                backButton.x = 60; backButton.y = height - 50;
+                retryButton.x = 60; retryButton.y = height - 50;
+                backButtonFromLoseScreen.x = 60; backButtonFromLoseScreen.y = height - 125;
+                coin.x = rangedRandom(20, width - 20);
+                coin.y = rangedRandom(20, height - 20);
+                player.x = width/2;
+                player.y = height - 40;
+            })
         </script>
     </body>
 </html>
